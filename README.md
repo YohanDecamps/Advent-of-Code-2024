@@ -1,4 +1,4 @@
-# Advent Of Code 2024
+# Advent Of Code 2024 :christmas_tree:
 
 This is my repository for the Advent of Code 2024. I will be solving the puzzles in C++ trying to improve my skills in this language and learn the [STL algorithms](https://en.cppreference.com/w/cpp/algorithm). **My goal is not to solve the puzzles as fast as possible**, but to solve them in the best way I can.
 
