@@ -6,8 +6,10 @@
 #include <vector>
 #include <algorithm>
 
+#define FILE_PATH "../input.txt"
+
 int main() {
-    std::ifstream file("../input.txt");
+    std::ifstream file(FILE_PATH);
 
     std::vector<int> left, right;
 
@@ -17,10 +19,9 @@ int main() {
     std::sort(left.begin(), left.end());
     std::sort(right.begin(), right.end());
 
-    std::vector<int> res(left.size());
-    std::transform(left.begin(), left.end(), right.begin(), res.begin(),
+    std::transform(left.begin(), left.end(), right.begin(), left.begin(),
     [](int a, int b) { return std::abs(a - b); });
 
-    std::cout << std::accumulate(res.begin(), res.end(), 0) << std::endl;
+    std::cout << std::reduce(left.begin(), left.end()) << std::endl;
     return 0;
 }
