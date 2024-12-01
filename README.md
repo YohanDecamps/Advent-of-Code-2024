@@ -16,17 +16,18 @@ The repository is divided into folders, each one corresponding to a day of the e
 │  │  ├──src
 │  │  │  └──main.cpp
 │  │  ├──Makefile
-│  └──part2
-│     ├──src
-│     │  └──main.cpp
-│     ├──Makefile
+│  ├──part2
+│  │  ├──src
+│  │  │  └──main.cpp
+│  │  ├──Makefile
+│  └──input.txt
 ├──day2
 │     etc...
 ```
 
 ## How to run the code?
 
-I will be using Makefiles because using Cmake for such a smalls projects seems like an overkill. To compile the code, you can use the following commands:
+I will be using Makefiles because using Cmake for such a smalls projects seems like an overkill. Don't forget to include a "input.txt" at the root of each day folder. To compile the code, you can use the following commands:
 
 ```bash
 cd day01/part1
