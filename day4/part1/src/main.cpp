@@ -1,23 +1,16 @@
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-#include <numeric>
-#include <regex>
 #include <string>
 #include <vector>
 
 #define FILE_PATH "../input.txt"
 
 int main() {
+    std::string file = std::string(std::istreambuf_iterator<char>(std::ifstream(FILE_PATH).rdbuf()), std::istreambuf_iterator<char>());
 
-    std::ifstream file(FILE_PATH);
-
-    std::vector<std::string> lines;
-    for (std::string line; std::getline(file, line); lines.push_back(line));
-    file.close();
-    int size_x = lines.at(0).size(), size_y = lines.size();
-
-    int count = 0;
+    int size = std::find(file.begin(), file.end(), '\n') - file.begin();
+    file.erase(std::remove(file.begin(), file.end(), '\n'), file.end());
 
     const std::vector<std::pair<int, int>> directions = {
         {0, 1},   // Horizontal
@@ -32,20 +25,20 @@ int main() {
 
     std::string pattern = "XMAS";
 
+    int count = 0;
+
     for (const auto& [dx, dy] : directions) {
-        for (int i = 0; i < size_y; i++) {
-            for (int j = 0; j < size_x; j++) {
-                bool match = true;
-                for (size_t k = 0; k < pattern.size(); k++) {
-                    int x = j + k * dx;
-                    int y = i + k * dy;
-                    if (x < 0 || x >= size_x || y < 0 || y >= size_y || lines[y][x] != pattern[k]) {
-                        match = false;
-                        break;
-                    }
+        for (size_t j = 0; j < file.size(); j++) {
+            bool match = true;
+            for (size_t k = 0; k < pattern.size(); k++) {
+                int x = j % size + k * dx;
+                int y = j / size + k * dy;
+                if (x < 0 || x >= size || y < 0 || y >= static_cast<int>(file.size()) / size || file[y * size + x] != pattern[k]) {
+                    match = false;
+                    break;
                 }
-                if (match) count++;
             }
+            if (match) count++;
         }
     }
 
