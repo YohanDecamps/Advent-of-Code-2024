@@ -1,8 +1,5 @@
-#include <algorithm>
 #include <iostream>
 #include <fstream>
-#include <numeric>
-#include <regex>
 #include <string>
 #include <vector>
 
