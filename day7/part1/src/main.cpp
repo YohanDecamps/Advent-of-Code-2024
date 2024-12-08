@@ -8,7 +8,7 @@
 #include <sstream>
 #include <vector>
 
-#define FILE_PATH "../input.txt"
+#define FILE_PATH "../input2.txt"
 
 enum class Operator {
     PLUS,
@@ -16,14 +16,12 @@ enum class Operator {
 };
 
 std::vector<Operator> generateOperators(std::vector<Operator> &operators) {
-    for (size_t i = 0; i < operators.size(); ++i) {
-        if (operators[i] == Operator::PLUS) {
-            operators[i] = Operator::MULTIPLY;
+    for (auto &op : operators)
+        if (op == Operator::PLUS) {
+            op = Operator::MULTIPLY;
             break;
-        } else {
-            operators[i] = Operator::PLUS;
-        }
-    }
+        } else
+            op = Operator::PLUS;
     return operators;
 }
 

@@ -17,17 +17,15 @@ enum class Operator {
 };
 
 std::vector<Operator> generateOperators(std::vector<Operator> &operators) {
-    for (size_t i = 0; i < operators.size(); ++i) {
-        if (operators[i] == Operator::PLUS) {
-            operators[i] = Operator::MULTIPLY;
+    for (auto &op : operators)
+        if (op == Operator::PLUS) {
+            op = Operator::MULTIPLY;
             break;
-        } else if (operators[i] == Operator::MULTIPLY) {
-            operators[i] = Operator::CONCATENATE;
+        } else if (op == Operator::MULTIPLY) {
+            op = Operator::CONCATENATE;
             break;
-        } else {
-            operators[i] = Operator::PLUS;
-        }
-    }
+        } else
+            op = Operator::PLUS;
     return operators;
 }
 
@@ -59,5 +57,4 @@ int main() {
         } while (!std::all_of(operators.begin(), operators.end(), [](Operator op) { return op == Operator::PLUS; }));
         return sum;
     }) << std::endl;
-
 }
