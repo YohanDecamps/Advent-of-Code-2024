@@ -4,22 +4,28 @@
 #include <numeric>
 #include <unordered_map>
 #include <string>
+#include <utility>
 
 #define FILE_PATH "../input.txt"
 
 std::pair<int64_t, int64_t> changeStone(int64_t base) {
-    if (base == 0)
+    if (base == 0) {
         return {1, -1};
+    }
     std::string str = std::to_string(base);
-    if (str.size() % 2 == 0)
-        return {std::stoll(str.substr(0, str.size() / 2)), std::stoll(str.substr(str.size() / 2))};
-    return {base * 2024, -1};
+    if (str.size() % 2 == 0) {
+        auto result = std::make_pair(std::stoll(str.substr(0, str.size() / 2)), std::stoll(str.substr(str.size() / 2)));
+        return result;
+    }
+    auto result = std::make_pair(base * 2024, -1);
+    return result;
 }
 
 int main() {
     std::ifstream file(FILE_PATH);
 
     std::unordered_map<int64_t, int64_t> stones;
+    std::unordered_map<int64_t, std::pair<int64_t, int64_t>> cache;
 
     for (int64_t stone; file >> stone; stones[stone] = 1);
 
